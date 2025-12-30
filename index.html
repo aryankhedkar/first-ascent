@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Ascent — Coaching by Aryan D. Khedkar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #FAFAF9;
+            --bg-warm: #F5F4F0;
+            --text: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --accent: #1A1A1A;
+            --accent-warm: #C4A77D;
+            --surface: #FFFFFF;
+            --border: #E5E5E3;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent-warm);
+            width: 0%;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(250, 250, 249, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-cta {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--bg);
+            background: var(--text);
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .nav-cta:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 60px 100px;
+            position: relative;
+            background: var(--bg);
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.2s forwards;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.4s forwards;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent-warm);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(19px, 2vw, 22px);
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 640px;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.6s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--bg);
+            background: var(--text);
+            padding: 18px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            opacity: 0;
+            animation: fadeIn 0.6s ease 0.8s forwards;
+        }
+
+        .hero-cta:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .hero-cta svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Credentials Bar */
+        .credentials {
+            padding: 48px 60px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .credentials-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .credential {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .credential-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .credential-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .credential-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Section Base */
+        section {
+            padding: 120px 60px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container-wide {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Section Headers */
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-warm);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: var(--surface);
+        }
+
+        .problem-text {
+            font-size: 19px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .problem-text strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .problem-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Founder Section */
+        .founder {
+            background: var(--bg);
+        }
+
+        .founder-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .founder-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .founder-text p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .founder-image-container {
+            position: sticky;
+            top: 120px;
+        }
+
+        .founder-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-warm);
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-name {
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .founder-title {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Transitions Section */
+        .transitions {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .transitions .section-label {
+            color: var(--accent-warm);
+        }
+
+        .transitions .section-title {
+            color: var(--bg);
+        }
+
+        .transitions-intro {
+            font-size: 19px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 64px;
+            max-width: 700px;
+        }
+
+        .transition-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .transition-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .transition-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+        }
+
+        .transition-number {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-warm);
+            margin-bottom: 20px;
+        }
+
+        .transition-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--bg);
+        }
+
+        .transition-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        .transition-text strong {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+        }
+
+        .transition-summary {
+            background: var(--accent-warm);
+            color: var(--text);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .transition-summary p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .transition-summary strong {
+            font-weight: 600;
+        }
+
+        /* Trial Section */
+        .trial {
+            background: var(--bg-warm);
+        }
+
+        .trial-subtitle {
+            font-size: 19px;
+            color: var(--text-secondary);
+            margin-bottom: 64px;
+        }
+
+        .trial-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .trial-step {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 40px 32px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -16px;
+            left: 32px;
+            width: 32px;
+            height: 32px;
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .step-time {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-warm);
+            margin-bottom: 12px;
+            margin-top: 8px;
+        }
+
+        .step-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .trial-guarantee {
+            margin-top: 48px;
+            padding: 32px;
+            background: var(--surface);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .trial-guarantee p {
+            font-size: 17px;
+            color: var(--text);
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--surface);
+        }
+
+        .pricing-subtitle {
+            font-size: 19px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 64px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .price-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+        }
+
+        .price-card.featured {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        .price-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .price-card.featured .price-label {
+            color: var(--accent-warm);
+        }
+
+        .price-amount {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .price-period {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .price-card.featured .price-period {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .price-features li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .price-card.featured .price-features li {
+            color: rgba(255,255,255,0.6);
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+
+        .price-cta {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--text);
+            color: var(--bg);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .price-cta:hover {
+            background: #333;
+        }
+
+        .price-card.featured .price-cta {
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .price-card.featured .price-cta:hover {
+            background: var(--bg-warm);
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--bg);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .faq-question {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .faq-answer {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .final-cta {
+            background: var(--bg-warm);
+            text-align: center;
+        }
+
+        .final-cta .section-title {
+            margin-bottom: 48px;
+        }
+
+        .cta-steps {
+            max-width: 500px;
+            margin: 0 auto 48px;
+            text-align: left;
+        }
+
+        .cta-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: var(--text-secondary);
+        }
+
+        .cta-step-num {
+            width: 28px;
+            height: 28px;
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: var(--text);
+            color: var(--bg);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .cta-primary:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 40px;
+            background: transparent;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--text);
+            background: var(--surface);
+        }
+
+        .cta-note {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 60px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Fade animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .founder-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .founder-image-container {
+                position: static;
+                max-width: 400px;
+            }
+
+            .transition-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .trial-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .hero {
+                padding: 120px 24px 80px;
+            }
+
+            .credentials {
+                padding: 32px 24px;
+            }
+
+            .credentials-inner {
+                flex-direction: column;
+                gap: 24px;
+                align-items: flex-start;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-primary, .cta-secondary {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+
+    <nav>
+        <a href="#" class="logo">First Ascent</a>
+        <a href="#pricing" class="nav-cta">Book Trial — £20</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">1-on-1 coaching for students & early careers</p>
+            <h1 class="hero-title">Stop guessing.<br>Start <em>positioning.</em></h1>
+            <p class="hero-subtitle">Get into universities most people think are unrealistic. Land roles at companies that compound your career. I help you see the game clearly—before you've already made the expensive mistakes.</p>
+            <a href="#pricing" class="hero-cta">
+                Book your trial — £20
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="credentials">
+        <div class="credentials-inner">
+            <div class="credential">
+                <div class="credential-icon">🎓</div>
+                <div>
+                    <div class="credential-text">Imperial College London</div>
+                    <div class="credential-sub">Physics — ranked #2 globally</div>
+                </div>
+            </div>
+            <div class="credential">
+                <div class="credential-icon">📉</div>
+                <div>
+                    <div class="credential-text">Founded a company. It failed.</div>
+                    <div class="credential-sub">Learned more than any success would've taught</div>
+                </div>
+            </div>
+            <div class="credential">
+                <div class="credential-icon">🚀</div>
+                <div>
+                    <div class="credential-text">Early-stage startups</div>
+                    <div class="credential-sub">Senior roles, real decisions, no playbook</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem fade-in">
+        <div class="container">
+            <p class="section-label">The Problem</p>
+            <h2 class="section-title">Most students don't lack ability. They lack clarity.</h2>
+            <p class="problem-text">Here's what I see constantly: capable students working incredibly hard—but treating subject choices like they're irrelevant, applications like bureaucratic forms, and career moves like checkboxes.</p>
+            <p class="problem-text">They're putting in the hours without understanding how the people on the other side actually think. <strong>The admissions tutor reading your personal statement. The recruiter scanning your CV. The hiring manager deciding between you and someone who looks nearly identical on paper.</strong></p>
+            <p class="problem-text">What happens? Wasted effort. Generic positioning that blends into the noise. Missed opportunities you only recognise when it's already too late to fix them.</p>
+            <p class="problem-text">First Ascent exists to close that gap. <strong>Build a coherent story. Make sharper decisions before the stakes get high. Understand what signals you're actually sending—before you've sent them.</strong></p>
+        </div>
+    </section>
+
+    <section class="founder fade-in">
+        <div class="container-wide">
+            <div class="founder-grid">
+                <div class="founder-text">
+                    <p class="section-label">Who's coaching you</p>
+                    <h2 class="section-title">I made the expensive mistakes so you don't have to.</h2>
+                    <p>I studied Physics at Imperial College London. Ranked #2 globally for the subject. Got in because I worked hard—but also because I understood, earlier than most, that applications are about signalling, not just achievement.</p>
+                    <p>Then I started a company. It failed. Not the soft kind of failure you can spin into a success story—the real kind, where you learn that <strong>execution without direction is just expensive motion.</strong></p>
+                    <p>Since then: senior roles at early-stage startups. Making calls when the path forward isn't obvious. Learning what it actually means to think clearly under uncertainty.</p>
+                    <p>I kept getting asked the same questions I once had: <strong>How do I position myself? What actually matters when I'm aiming high? How do I avoid quietly closing doors I didn't even know existed?</strong></p>
+                    <p>First Ascent exists because I can help you see around corners I couldn't. The patterns I've learned—about admissions, about career leverage, about how decisions compound—took me years and real cost to figure out. You can shortcut that.</p>
+                </div>
+                <div class="founder-image-container">
+                    <div class="founder-image">
+                        <img src="Official Aryan London.jpg" alt="Aryan D. Khedkar">
+                    </div>
+                    <p class="founder-name">Aryan D. Khedkar</p>
+                    <p class="founder-title">Founder, First Ascent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="transitions fade-in">
+        <div class="container-wide">
+            <p class="section-label">Critical Transitions</p>
+            <h2 class="section-title">Three moments where clarity matters most.</h2>
+            <p class="transitions-intro">Most people don't realise how early certain doors close. Or how much harder it is to fix a mistake once you're a year down the wrong path.</p>
+
+            <div class="transition-cards">
+                <div class="transition-card">
+                    <p class="transition-number">01</p>
+                    <h3 class="transition-title">GCSEs → A-Level/IB</h3>
+                    <p class="transition-text"><strong>Your subject choices signal what kind of student you are</strong>—before you've written a single word. Most students pick in isolation, without understanding how admissions tutors read these signals. By the time they figure it out, it's already locked in.</p>
+                </div>
+
+                <div class="transition-card">
+                    <p class="transition-number">02</p>
+                    <h3 class="transition-title">Sixth Form → University</h3>
+                    <p class="transition-text"><strong>Everyone sounds the same.</strong> The students who get into Imperial, Oxbridge, Ivy League aren't necessarily smarter. They're clearer. They can articulate why they made specific choices—instead of following templates everyone else is following.</p>
+                </div>
+
+                <div class="transition-card">
+                    <p class="transition-number">03</p>
+                    <h3 class="transition-title">University → Career</h3>
+                    <p class="transition-text"><strong>Early career momentum compounds.</strong> Get into a top firm or high-growth startup early, you're surrounded by ambitious people and learning faster. Take the wrong first role? You spend two years fixing that mistake while others pull ahead.</p>
+                </div>
+            </div>
+
+            <div class="transition-summary">
+                <p><strong>Same pattern at every stage:</strong> You're making decisions with limited information about how the system actually works. You don't know what signals you're sending. You're optimising for the wrong things because no one told you what the right things are. First Ascent closes that gap.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="trial fade-in">
+        <div class="container-wide">
+            <p class="section-label">Your Trial Session</p>
+            <h2 class="section-title">60 minutes. No sales pitch. Just clarity.</h2>
+            <p class="trial-subtitle">You walk away with a plan whether we continue working together or not.</p>
+
+            <div class="trial-steps">
+                <div class="trial-step">
+                    <div class="step-number">1</div>
+                    <p class="step-time">First 15 minutes</p>
+                    <h3 class="step-title">Map the terrain</h3>
+                    <p class="step-description">Where are you now? Where do you want to go? What's working, what's not, what's actually at stake. I ask uncomfortable questions. You get honest about the situation.</p>
+                </div>
+
+                <div class="trial-step">
+                    <div class="step-number">2</div>
+                    <p class="step-time">Next 30 minutes</p>
+                    <h3 class="step-title">Find the leverage points</h3>
+                    <p class="step-description">I show you the 2-3 highest-impact changes you can make. What to focus on, what to ignore, what signals you're currently sending that you probably shouldn't be.</p>
+                </div>
+
+                <div class="trial-step">
+                    <div class="step-number">3</div>
+                    <p class="step-time">Final 15 minutes</p>
+                    <h3 class="step-title">Build your 90-day plan</h3>
+                    <p class="step-description">We create a concrete roadmap. Clear next steps. You leave knowing exactly what to do next—not just what to think about.</p>
+                </div>
+            </div>
+
+            <div class="trial-guarantee">
+                <p>You get real value from the trial itself. If we're not a good fit, you still leave with clarity you didn't have before.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing fade-in">
+        <div class="container-wide">
+            <p class="section-label">Pricing</p>
+            <h2 class="section-title">Start with a trial. No commitment.</h2>
+            <p class="pricing-subtitle">I keep my roster small so I can actually help. Not selling a course—this is real coaching.</p>
+            <span class="pricing-badge">Taking 3 more students this month</span>
+
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <p class="price-label">Trial</p>
+                    <p class="price-amount">£20</p>
+                    <p class="price-period">Single session</p>
+                    <ul class="price-features">
+                        <li>60 minutes, online</li>
+                        <li>Assess fit and direction</li>
+                        <li>Walk away with a plan</li>
+                        <li>No commitment required</li>
+                    </ul>
+                    <a href="mailto:aryan@firstascent.co?subject=Trial Session Booking" class="price-cta">Book trial</a>
+                </div>
+
+                <div class="price-card featured">
+                    <p class="price-label">Standard</p>
+                    <p class="price-amount">£225</p>
+                    <p class="price-period">Per month</p>
+                    <ul class="price-features">
+                        <li>4 sessions per month</li>
+                        <li>Weekend availability</li>
+                        <li>Best for steady progress</li>
+                        <li>Clear, actionable guidance</li>
+                    </ul>
+                    <a href="mailto:aryan@firstascent.co?subject=Standard Package Inquiry" class="price-cta">Get started</a>
+                </div>
+
+                <div class="price-card">
+                    <p class="price-label">Intensive</p>
+                    <p class="price-amount">£425</p>
+                    <p class="price-period">Per month</p>
+                    <ul class="price-features">
+                        <li>8 sessions per month</li>
+                        <li>For deadlines & critical decisions</li>
+                        <li>Application crunch periods</li>
+                        <li>Limited availability</li>
+                    </ul>
+                    <a href="mailto:aryan@firstascent.co?subject=Intensive Package Inquiry" class="price-cta">Apply for intensive</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq fade-in">
+        <div class="container-wide">
+            <p class="section-label">Questions</p>
+            <h2 class="section-title">Straight answers.</h2>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">"I'm not sure I'm ready for coaching."</h3>
+                    <p class="faq-answer">That's why the trial exists. £20, one hour, no commitment. We figure out if this makes sense for you. If it doesn't, you still leave with a 90-day plan.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">"What if I don't get results?"</h3>
+                    <p class="faq-answer">I only work with people who are willing to do the work. If you show up, engage honestly, and implement what we discuss—you'll see progress. If you're looking for someone to do the thinking for you, this isn't that.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">"Why you over other coaches?"</h3>
+                    <p class="faq-answer">I'm not selling a system or a course. I've been through Imperial, built and killed a company, worked at startups where I had to make real calls. I'm telling you what I wish someone had told me at 16, 18, 21. The mistakes I made—so you don't have to.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">"How fast will I see results?"</h3>
+                    <p class="faq-answer">Depends what we're working on. Application strategy? Clarity within 2-3 sessions. Long-term career positioning? That compounds over months. Either way, you'll know exactly what to do next after our first call.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta fade-in">
+        <div class="container">
+            <h2 class="section-title">Here's what happens next.</h2>
+
+            <div class="cta-steps">
+                <div class="cta-step">
+                    <div class="cta-step-num">1</div>
+                    <span>Email me at aryan@firstascent.co (or click below)</span>
+                </div>
+                <div class="cta-step">
+                    <div class="cta-step-num">2</div>
+                    <span>Tell me where you are and where you want to go. 2-3 sentences.</span>
+                </div>
+                <div class="cta-step">
+                    <div class="cta-step-num">3</div>
+                    <span>I reply within 24 hours with available times</span>
+                </div>
+                <div class="cta-step">
+                    <div class="cta-step-num">4</div>
+                    <span>We do a 60-minute trial. You decide if it's worth continuing.</span>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="mailto:aryan@firstascent.co?subject=Trial Session Booking&body=Hi Aryan,%0D%0A%0D%0AWhere I am: %0D%0A%0D%0AWhere I want to go: %0D%0A%0D%0AThanks!" class="cta-primary">
+                    Book trial — £20
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+                <a href="mailto:aryan@firstascent.co?subject=Question about First Ascent" class="cta-secondary">Ask a question</a>
+            </div>
+
+            <p class="cta-note">No sales pitch. No pressure. Just clarity.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 First Ascent by Aryan D. Khedkar</p>
+    </footer>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Fade in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
